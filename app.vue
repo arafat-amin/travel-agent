@@ -2,6 +2,16 @@
 
 <template>
   <div>
+
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <NuxtLink to="/favorites">favorites </NuxtLink>
+          </li>
+        </ul>
+      </nav>
+    </header>
     <!-- <NuxtRouteAnnouncer />
     <NuxtWelcome /> -->
     <NuxtPage />
@@ -10,5 +20,21 @@
     >
       <h1 class="text-4xl font-bold">Welcome to Travel Agent 🌍 Layout page</h1>
     </div> -->
+   
   </div>
 </template>
+
+<style scoped>
+header {
+  background-color: #ccc;
+  padding: 10px 15px;
+}
+ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+ul li a {
+  
+}
+</style>
