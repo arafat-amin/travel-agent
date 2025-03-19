@@ -1,7 +1,7 @@
 import { ref } from "vue";
 
 export const useFavoritesStore = () => {
-  const favorites = ref([]);
+  const favorites = useState("favorites", () => []);
 
   if (import.meta.client) {
     const storedFavorites = localStorage.getItem("favorites");

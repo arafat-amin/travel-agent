@@ -12,6 +12,8 @@ const sortOrder = ref(""); // Added sorting variable
 
 const currentPage = ref(1); // Added for Pagination
 const toursPerPage = 6; //Show 6 tours per page
+ 
+const isFavorite = (id) => favorites.value.includes(id);
 
 // Generate Unique Categories
 const uniqueCategories = computed(() => {
@@ -29,8 +31,6 @@ const filteredTours = computed(() => {
     const matchesCategory = categoryList.value === "" || tour.category === categoryList.value;
     return matchesSearch && matchesCategory;
   });
-
-  const isFavorite = (id) => favorites.value.includes(id);
 
   // Step 2: Apply Sorting
   if (sortOrder.value === "low") {

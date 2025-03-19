@@ -1,4 +1,22 @@
-<script setup></script>
+<script setup>
+import { computed } from 'vue';
+import { useFavoritesStore } from './store/favorites';
+const { favorites } = useFavoritesStore();
+
+// Ensure localStorage updates after hydration
+onMounted(() => { 
+  const storedFavorites = localStorage.getItem("favorites");
+  if (storedFavorites) {
+    favorites.value = JSON.parse(storedFavorites);
+  }
+})
+
+watch(favorites, () => {
+  console.log('Favorites updated:', favorites.value);
+})
+
+const favoriteCount = computed(() => favorites.value.length)
+</script>
 
 <template>
   <div>
@@ -7,7 +25,11 @@
       <nav>
         <ul>
           <li>
-            <NuxtLink to="/favorites">favorites </NuxtLink>
+            <NuxtLink to="/">Home </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/favorites" 
+            :class="{ disabled: favoriteCount === 0 }">Favorites ({{ favoriteCount }}) </NuxtLink>
           </li>
         </ul>
       </nav>
@@ -33,8 +55,16 @@ ul {
   list-style: none;
   display: flex;
   align-items: center;
+  gap: 20px;
 }
-ul li a {
-  
+ul li a{
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
 }
 </style>
